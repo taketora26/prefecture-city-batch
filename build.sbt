@@ -18,11 +18,22 @@ libraryDependencies ++= Seq(
   "io.circe"                      %% "circe-generic"                   % circeVersion,
   "org.tpolecat"                  %% "doobie-core"                     % doobieVersion,
   "org.tpolecat"                  %% "doobie-hikari"                   % doobieVersion,
-//  "io.monix"                      %% "monix"                           % monixVersion,
-  "io.monix"                 %% "monix-eval"          % monixVersion,
-  "com.softwaremill.macwire" %% "macros"              % "2.3.6" % Provided,
-  "ch.qos.logback"           % "logback-classic"      % "1.2.3",
-  "com.typesafe"             % "config"               % "1.4.1",
-  "mysql"                    % "mysql-connector-java" % "8.0.11",
-  "com.softwaremill.sttp"    %% "circe"               % "1.7.2"
+  "io.monix"                      %% "monix-eval"                      % monixVersion,
+  "com.softwaremill.macwire"      %% "macros"                          % "2.3.6" % Provided,
+  "ch.qos.logback"                % "logback-classic"                  % "1.2.3",
+  "com.typesafe"                  % "config"                           % "1.4.1",
+  "mysql"                         % "mysql-connector-java"             % "8.0.11",
+  "com.softwaremill.sttp"         %% "circe"                           % "1.7.2"
+)
+
+enablePlugins(FlywayPlugin)
+
+import com.typesafe.config.ConfigFactory
+val conf = ConfigFactory.parseFile(new File("src/main/resources/application.conf")).resolve()
+
+flywayUser := conf.getString("db.default.user")
+flywayUrl := conf.getString("db.default.url")
+flywayPassword := conf.getString("db.default.password")
+flywayLocations := Seq(
+  "filesystem:./src/main/resources//db/migration/default"
 )

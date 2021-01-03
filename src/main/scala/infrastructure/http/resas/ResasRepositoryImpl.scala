@@ -27,6 +27,7 @@ class ResasRepositoryImpl(resasApi: ResasApi) extends ResasRepository {
             case Right(response) => response.result
           }
         )
+        .guarantee(backend.close())
     )
   }
 
@@ -47,6 +48,7 @@ class ResasRepositoryImpl(resasApi: ResasApi) extends ResasRepository {
             case Right(response) => response.result
           }
         )
+        .guarantee(backend.close())
     )
   }
 
