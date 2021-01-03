@@ -24,9 +24,10 @@ $ sbt flywayMigrate
 ```
 
 ## Using Library
-- MONIX
-- Doobie
-- STTP
+- [Monix](https://monix.io/)
+- [doobie](https://tpolecat.github.io/doobie/)
+- [sttp](https://sttp.softwaremill.com/en/latest/index.html)
+- [circe](https://circe.github.io/circe/)
 
 
 ## RUN BATCH
