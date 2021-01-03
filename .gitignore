@@ -1,0 +1,5 @@
+/.bsp
+/.env
+/.idea
+target/
+project/target/

@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: prefacture-city-mysql
+    restart: always
+    hostname: prefacture-city-mysql-server
+    environment:
+      MYSQL_DATABASE: prefacture-city
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
